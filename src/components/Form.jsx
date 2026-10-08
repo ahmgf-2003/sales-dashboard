@@ -1,5 +1,5 @@
 import { useActionState } from "react";
-import supabase from "./supabase-api";
+import supabase from "../apis/supabase-api";
 
 function Form() {
     const [error, submitAction, isPending] = useActionState(

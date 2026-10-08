@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import supabase from "./supabase-api";
+import supabase from "../apis/supabase-api";
 import { Chart } from "react-charts";
+import Form from "../components/Form";
 
 function Dashboard() {
     const [metrics, setMetrics] = useState([]);
@@ -36,7 +37,7 @@ function Dashboard() {
                     table: "sales_deals",
                 },
                 (payload) => {
-                    fetchMetrics()
+                    fetchMetrics();
                 },
             )
             .subscribe();
@@ -79,19 +80,22 @@ function Dashboard() {
     }
 
     return (
-        <section className="chart-container">
-            <h2>Total Sales This Quarter ($)</h2>
-            <div className="chart">
-                <Chart
-                    options={{
-                        data: chartData,
-                        primaryAxis,
-                        secondaryAxes,
-                        type: "bars",
-                        defaultColors: ["#58d675"],
-                    }}
-                />
+        <section className="chart-section">
+            <div className="chart-container">
+                <h2>Total Sales This Quarter ($)</h2>
+                <div className="chart">
+                    <Chart
+                        options={{
+                            data: chartData,
+                            primaryAxis,
+                            secondaryAxes,
+                            type: "bars",
+                            defaultColors: ["#58d675"],
+                        }}
+                    />
+                </div>
             </div>
+            <Form />
         </section>
     );
 }
